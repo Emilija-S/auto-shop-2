@@ -2,10 +2,10 @@
     <div>
         <table>
             <tr>
-                <th>ID</th>
-                <th>Manufacturer</th>
-                <th>VEHICLES</th>
-                <th></th>
+                <th scope="col">ID</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">VEHICLES</th>
+                <th scope="col">DELETE</th>
             </tr>
             <tr v-for="vehicle_model in vehicle_models.data">
                 <td>
@@ -14,17 +14,19 @@
                 <td>
                     {{ vehicle_model.manufacturer.name }}
                 </td>
-                <td v-for="vehicle in vehicle_model.vehicles">
-                    <span>{{ vehicle.chassis_number }}</span>
-                    <img :src="vehicle.image" width="60" height="60" class="d-inline p-3">
-<!--                    <Link :href="route('manufacturers.edit', manufacturer)">-->
-<!--                        EDIT-->
-<!--                    </Link>-->
+                <td>
+                    <div v-for="vehicle in vehicle_model.vehicles">
+                        <span>{{ vehicle.chassis_number }}</span>
+                        <img :src="vehicle.image" width="60" height="60" class="d-inline p-3">
+                        <!--                    <Link :href="route('manufacturers.edit', manufacturer)">-->
+                        <!--                        EDIT-->
+                        <!--                    </Link>-->
+                    </div>
                 </td>
                 <td>
-<!--                    <Link :href="route('manufacturers.destroy', manufacturer.id)" method="DELETE">-->
-<!--                        DELETE-->
-<!--                    </Link>-->
+                    <Link :href="route('vehicle-models.destroy', vehicle_model.id)" method="DELETE">
+                        DELETE
+                    </Link>
                 </td>
             </tr>
         </table>

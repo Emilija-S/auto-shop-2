@@ -39,4 +39,19 @@ class VehicleModelController extends Controller
 
         return redirect()->back();
     }
+
+    public function edit(VehicleModel $vehicleModel): Response
+    {
+        return Inertia::render('VehicleModels/Edit', compact('vehicleModel'));
+    }
+
+    public function update(VehicleModel $vehicleModel, Request $request) {
+
+    }
+
+    public function destroy(VehicleModel $vehicleModel): RedirectResponse
+    {
+        $vehicleModel->delete();
+        return redirect()->back();
+    }
 }

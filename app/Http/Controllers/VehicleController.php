@@ -14,7 +14,7 @@ class VehicleController extends Controller
     public function index(): Response
     {
         $vehicles = Vehicle::query()
-            ->with('vehicle_model', 'manufacturer')
+            ->with('vehicle_model')
             ->paginate(15);
         return Inertia::render('Vehicles/Index', compact('vehicles'));
     }
@@ -40,6 +40,21 @@ class VehicleController extends Controller
         $vehicle->description = $request->input('description');
         $vehicle->save();
 
+        return redirect()->back();
+    }
+
+    public function edit(Vehicle $vehicle): Response
+    {
+        return Inertia::render('Vehicles/Edit', compact('vehicle'));
+    }
+
+    public function update(Vehicle $vehicle, Request $request) {
+
+    }
+
+    public function destroy(Vehicle $vehicle): RedirectResponse
+    {
+        $vehicle->delete();
         return redirect()->back();
     }
 }

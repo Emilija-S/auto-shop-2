@@ -5,7 +5,7 @@
                 <th>ID</th>
                 <th>Model</th>
                 <th>Chassis number</th>
-                <th></th>
+                <th>DELETE</th>
             </tr>
             <tr v-for="vehicle in vehicles.data">
                 <td>
@@ -21,9 +21,9 @@
                     <!--                    </Link>-->
                 </td>
                 <td>
-                    <!--                    <Link :href="route('manufacturers.destroy', manufacturer.id)" method="DELETE">-->
-                    <!--                        DELETE-->
-                    <!--                    </Link>-->
+                    <Link :href="route('vehicles.destroy', vehicle.id)" method="DELETE">
+                        DELETE
+                    </Link>
                 </td>
             </tr>
         </table>
