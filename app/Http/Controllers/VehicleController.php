@@ -30,6 +30,9 @@ class VehicleController extends Controller
         $this->validate($request, [
             'vehicle_model_id' => 'required',
             'chassis_number' => 'required',
+            'title' => 'required',
+            'image' => 'required',
+            'description' => 'required'
         ]);
 
         $vehicle = new Vehicle();
@@ -45,11 +48,22 @@ class VehicleController extends Controller
 
     public function edit(Vehicle $vehicle): Response
     {
-        return Inertia::render('Vehicles/Edit', compact('vehicle'));
+        $vehicle_models = VehicleModel::all();
+        return Inertia::render('Vehicles/Edit', compact('vehicle', 'vehicle_models'));
     }
 
-    public function update(Vehicle $vehicle, Request $request) {
-
+    public function update(Vehicle $vehicle, Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'vehicle_model_id' => 'required',
+            'chassis_number' => 'required',
+            'title' => 'required',
+            'image' => 'required',
+            'description' => 'required'
+        ]);
+        $vehicle->fill($validated);
+        $vehicle->save();
+        return redirect()->back();
     }
 
     public function destroy(Vehicle $vehicle): RedirectResponse

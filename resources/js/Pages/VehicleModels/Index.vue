@@ -5,6 +5,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Manufacturer</th>
                 <th scope="col">VEHICLES</th>
+                <th>EDIT</th>
                 <th scope="col">DELETE</th>
             </tr>
             <tr v-for="vehicle_model in vehicle_models.data">
@@ -18,10 +19,13 @@
                     <div v-for="vehicle in vehicle_model.vehicles">
                         <span>{{ vehicle.chassis_number }}</span>
                         <img :src="vehicle.image" width="60" height="60" class="d-inline p-3">
-                        <!--                    <Link :href="route('manufacturers.edit', manufacturer)">-->
-                        <!--                        EDIT-->
-                        <!--                    </Link>-->
+
                     </div>
+                </td>
+                <td>
+                    <Link :href="route('vehicle-models.edit', vehicle_model.id)">
+                        EDIT
+                    </Link>
                 </td>
                 <td>
                     <Link :href="route('vehicle-models.destroy', vehicle_model.id)" method="DELETE">

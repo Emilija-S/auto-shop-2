@@ -42,11 +42,18 @@ class VehicleModelController extends Controller
 
     public function edit(VehicleModel $vehicleModel): Response
     {
-        return Inertia::render('VehicleModels/Edit', compact('vehicleModel'));
+        $manufacturers = Manufacturer::all();
+        return Inertia::render('VehicleModels/Edit', compact('vehicleModel', 'manufacturers'));
     }
 
-    public function update(VehicleModel $vehicleModel, Request $request) {
-
+    public function update(VehicleModel $vehicleModel, Request $request)
+    {
+        $validated = $request->validate([
+            'manufacturer_id' => 'required',
+            'name' => 'required',
+        ]);
+        $vehicleModel->fill($validated);
+        $vehicleModel->save();
     }
 
     public function destroy(VehicleModel $vehicleModel): RedirectResponse

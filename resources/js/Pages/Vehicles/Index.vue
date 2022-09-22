@@ -5,6 +5,7 @@
                 <th>ID</th>
                 <th>Model</th>
                 <th>Chassis number</th>
+                <th>EDIT</th>
                 <th>DELETE</th>
             </tr>
             <tr v-for="vehicle in vehicles.data">
@@ -16,9 +17,11 @@
                 </td>
                 <td>
                     {{ vehicle.chassis_number }}
-                    <!--                    <Link :href="route('manufacturers.edit', manufacturer)">-->
-                    <!--                        EDIT-->
-                    <!--                    </Link>-->
+                </td>
+                <td>
+                    <Link :href="route('vehicles.edit', vehicle)">
+                        EDIT
+                    </Link>
                 </td>
                 <td>
                     <Link :href="route('vehicles.destroy', vehicle.id)" method="DELETE">

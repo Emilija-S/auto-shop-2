@@ -5,7 +5,7 @@
             <input type="text" id="name" name="name" v-model="form.name">
         </div>
         <div>
-            <label for="manufacturer_id">Manifacturer</label>
+            <label for="manufacturer_id">Manufacturer</label>
             <select name="manufacturer_id"
                     id="manufacturer_id"
                     type="text"
