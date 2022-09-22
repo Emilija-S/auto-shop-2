@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submit">
-        <div>
+        <div class="bg-danger">
             <input type="text" id="name" v-model="form.name">
         </div>
         <div>
